@@ -1,9 +1,14 @@
 import { Layout } from "~/layout/Layout";
+import { CompanyDetails } from "~/components/CompanyDetails/CompanyDetails";
+import { Contacts } from "~/components/Contacts/Contacts";
+import { Photos } from "~/components/Photos/Photos";
 
 const Home = () => {
   return (
     <Layout>
-      <h1>Home Page</h1>
+      <CompanyDetails />
+      <Contacts />
+      <Photos />
     </Layout>
   );
 };
