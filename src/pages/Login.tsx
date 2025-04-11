@@ -1,39 +1,34 @@
-import { useState } from "react";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "~/context/AuthContext";
-import { login } from "~/api/auth";
+import { Box, Button, TextField, Typography } from "@mui/material";
 
 const Login = () => {
-  const { setToken } = useAuth();
+  const { token, login } = useAuth();
   const [username, setUsername] = useState("");
+  const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    try {
-      const data = await login(username);
-      setToken(data.token);
-    } catch (error) {
-      console.error("Login failed", error);
+  useEffect(() => {
+    if (token) {
+      navigate("/");
     }
+  }, [token, navigate]);
+
+  const handleSubmit = async () => {
+    if (!username) return;
+    await login(username);
+    console.log("TOKEN AFTER LOGIN", token);
   };
 
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      gap={2}
-      maxWidth={300}
-      mx="auto"
-      mt={10}
-    >
+    <Box>
       <Typography variant="h5">Login</Typography>
       <TextField
         label="Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
-      <Button variant="contained" onClick={handleLogin}>
-        Login
-      </Button>
+      <Button onClick={handleSubmit}>Login</Button>
     </Box>
   );
 };

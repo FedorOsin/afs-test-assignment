@@ -1,6 +1,5 @@
 import React from "react";
 import * as ReactDOM from "react-dom/client";
-import type { ReactElement } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider, useAuth } from "~/context/AuthContext";
@@ -9,8 +8,9 @@ import Login from "~/pages/Login";
 
 const queryClient = new QueryClient();
 
-const PrivateRoute = ({ children }: { children: ReactElement }) => {
+const PrivateRoute = ({ children }: { children: React.ReactElement }) => {
   const { token } = useAuth();
+
   return token ? children : <Navigate to="/login" />;
 };
 

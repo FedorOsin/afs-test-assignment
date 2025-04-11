@@ -5,8 +5,9 @@ import { getCompany } from "~/api/company";
 import { useAuth } from "~/context/AuthContext";
 
 export const CompanyDetails = () => {
+  console.log("CompanyDetails rendered");
   const { token } = useAuth();
-
+  console.log("TOKEN IN COMPANY: ", token);
   const { data, isLoading, error } = useQuery({
     queryKey: ["company"],
     queryFn: () => getCompany(token!),

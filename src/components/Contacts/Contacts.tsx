@@ -5,8 +5,9 @@ import { getContacts } from "~/api/contacts";
 import { useAuth } from "~/context/AuthContext";
 
 export const Contacts = () => {
+  console.log("Contacts rendered");
   const { token } = useAuth();
-
+  console.log("TOKEN IN CONTACTS: ", token);
   const { data, isLoading, error } = useQuery({
     queryKey: ["contacts"],
     queryFn: () => getContacts(token!),
