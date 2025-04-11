@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { Sidebar } from "~/layout/Sidebar";
+import { Sidebar } from "./Sidebar";
 
 type Props = {
   children: React.ReactNode;
@@ -7,9 +7,9 @@ type Props = {
 
 export const Layout = ({ children }: Props) => {
   return (
-    <Box display="flex">
+    <Box sx={{ display: "flex" }}>
       <Sidebar />
-      <Box component="main" flexGrow={1} p={3}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         {children}
       </Box>
     </Box>
