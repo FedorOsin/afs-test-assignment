@@ -1,15 +1,16 @@
 import { ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 
 type Props = {
-  icon: React.ReactNode;
+  id: number;
   text: string;
-  selected: boolean;
+  icon: React.ReactNode;
+  active: boolean;
   onClick: () => void;
 };
 
-export const SidebarItem = ({ icon, text, selected, onClick }: Props) => {
+export const SidebarItem = ({ text, icon, active, onClick }: Props) => {
   return (
-    <ListItemButton selected={selected} onClick={onClick}>
+    <ListItemButton selected={active} onClick={onClick}>
       <ListItemIcon>{icon}</ListItemIcon>
       <ListItemText primary={text} />
     </ListItemButton>
