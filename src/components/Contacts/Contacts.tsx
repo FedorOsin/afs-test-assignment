@@ -1,6 +1,8 @@
+import { Box, Typography, Stack, Divider, IconButton } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
 import { useQuery } from "@tanstack/react-query";
-import { useAuth } from "~/context/AuthContext";
 import { getContacts } from "~/api/contacts";
+import { useAuth } from "~/context/AuthContext";
 
 export const Contacts = () => {
   const { token } = useAuth();
@@ -15,9 +17,26 @@ export const Contacts = () => {
   if (error) return <div>Error loading contacts data</div>;
 
   return (
-    <div>
-      <h2>Contacts</h2>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </div>
+    <Box p={2} border="1px solid #ccc" borderRadius={2} mb={3}>
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+        mb={2}
+      >
+        <Typography variant="h6">Contacts</Typography>
+        <IconButton>
+          <EditIcon />
+        </IconButton>
+      </Stack>
+
+      <Divider sx={{ mb: 2 }} />
+
+      <Typography>
+        Responsible person: {data.lastname} {data.firstname} {data.patronymic}
+      </Typography>
+      <Typography>Phone number: {data.phone}</Typography>
+      <Typography>Email: {data.email}</Typography>
+    </Box>
   );
 };
